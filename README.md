@@ -1,2 +1,2 @@
-# workout_leaderboad
-An app for displaying workouts from an excersice API
+# workout_leaderboard
+An app for displaying workouts from an exercise API.
