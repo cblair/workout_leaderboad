@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="leaderboard">
 <head>
     <title>Workout Leaderboard</title>
 
@@ -7,9 +7,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script type="text/javascript" src="/js/foundation.min.js"></script>
-    <script src="https://use.fontawesome.com/940df806e3.js"></script>
+    <script type="text/javascript" src="https://use.fontawesome.com/940df806e3.js"></script>
     <script type="text/javascript" src="/js/index.js"></script>
-    <script type="text/javascript" src="/js/app.js"></script>
+    <script type="text/javascript" src="/js/leaderboard.js"></script>
 
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="/css/foundation.min.css">
@@ -37,21 +37,7 @@
     </nav>
 
     <!-- Leaderboard -->
-    <div class="row">
-        <div class="large-12 columns">
-            <span id="error" class="error"></span>
-            <h1>Workouts</h1>
-            <table id="user-display">
-                <thead>
-                    <tr>
-                        <td>username</td>
-                        <td>tasks</td>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
-    </div>
+   <leaderboard></leaderboard>
+    
 </body>
 </html>
