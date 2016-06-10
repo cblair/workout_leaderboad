@@ -10,6 +10,9 @@
                 </tr>
             </thead>
             <tbody>
+                <tr ng-repeat="row in leaderboardCtl.leaderboardData">
+                    <td><img class="profile-image" ng-src="{{row.profileImg}}"> {{row.username}}</td>
+                </tr>
             </tbody>
         </table>
     </div>
