@@ -6,12 +6,55 @@
             <thead>
                 <tr>
                     <td>username</td>
-                    <td>tasks</td>
+                    <td>Summary</td>
+                    <!-- Requirement: Display a summary section that will roll
+                        up some neat stats about the results. -->
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="row in leaderboardCtl.leaderboardData">
-                    <td><img class="profile-image" ng-src="{{row.profileImg}}"> {{row.username}}</td>
+                    <!-- username-->
+                    <td><img class="profile-image" ng-src="{{row.profileImg}}">
+                        <a href="{{row.profileUrl}}">{{row.username}}</a>
+                    </td>
+
+                    <!-- Summary -->
+                    <td>
+                        <p>Rank:
+                            {{row.rank}}/{{leaderboardCtl.workoutCount}}
+                            <i class="fa fa-trophy"></i>
+                        </p>
+
+                        <p>Tests:
+                            <ul>
+                                <li ng-repeat="test in row.tests">{{test}}</li>
+                            </ul>
+                        </p>
+
+                        <p>User tests:
+                            <ul>
+                                <li ng-repeat="test in row.userTests">
+                                    {{test.value}}
+                                    <ul>
+                                        <li>
+                                            {{test.timestamp | date:'medium'}}
+                                        </li>
+                                        <li>
+                                            RX: <i ng-if="row.rx_bool" class="fa fa-check"></i>
+                                            <i ng-if="!row.rx_bool" class="fa fa-times"></i>
+                                            {{test.rx_bool}}
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-thumbs-o-up"></i> {{test.like_count}}
+                                        </li>
+                                        <li>
+                                        <i class="fa fa-comment-o"></i> {{test.comment_count}}
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </p>
+                    </td>
                 </tr>
             </tbody>
         </table>

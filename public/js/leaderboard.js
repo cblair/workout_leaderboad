@@ -21,6 +21,16 @@
                 // ### leaderboardData
                 // List of all the data point in the leader board.
                 this.leaderboardData = [];
+
+                // ### workoutCount
+                // Count of how many workouts are in the data, set when
+                // efficient to do so.
+                this.workoutCount = 0;
+
+                // ### segments
+                // Count of how many workout data segments we've split the
+                // data up into.
+                this.segments = 0;
                 
                 // ### getLeaderboardData
                 // Get leaderboard data from the API. This function exposes
@@ -56,6 +66,11 @@
                                     Array.isArray(response.data.results) ?
                                         response.data.results : []
 
+                                    // Set cached stats about the data.
+                                    leaderboardCtl.workoutCount = data.length;
+                                    leaderboardCtl.segments = Math.ceil(
+                                        data.length / size);
+
                                 return leaderboardCtl.getSegmentedData(data,
                                     segment, size);
                             },
@@ -70,19 +85,32 @@
                         var from = segment * size,
                             to = from + size,
                             segmentData = data.slice(from, to);
-                        console.log(from);
-                        console.log(to);
 
                         fullfill(segmentData);
                     });
                 };
 
-                var result = this.getLeaderboardData(1, 10)
-                    .then(function (data) {
-                        console.log(data);
-                        leaderboardCtl.leaderboardData = data;
-                    });
+                this.cycleLeaderboard = function () {
+                    var segment = 0;
+                    var updateData = function () {
+                        var result = leaderboardCtl.getLeaderboardData(segment, 10)
+                            .then(function (data) {
+                                leaderboardCtl.leaderboardData = data;
 
+                                console.log(segment);
+                                console.log(segment + 1);
+                                console.log(leaderboardCtl.segments);
+                                segment = (segment + 1) % leaderboardCtl.segments;
+                                console.log(segment);
+                            });
+                        setTimeout(updateData, 3000);
+                    };
+                    updateData();
+                };
+
+                // ### Start
+                // Start the leaderboard cycle.
+                this.cycleLeaderboard();
             },
             controllerAs: 'leaderboardCtl'
         };
