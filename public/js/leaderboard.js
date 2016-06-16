@@ -1,6 +1,7 @@
 'use strict';
 
 (function () {
+    // URL for our data API.
     const LEADERBOARD_API_URL = 
         'https://apis.trainheroic.com/public/leaderboard/468425';
 
@@ -18,19 +19,25 @@
                 // Create a closure reference for our Promises.
                 var leaderboardCtl = this;
 
+                // How fast to cycle the leaderboard (milliseconds).
+                this.cycleInterval = 5000;
+
                 // ### leaderboardData
                 // List of all the data point in the leader board.
                 this.leaderboardData = [];
+
+                // How many segments to show at one time.
+                this.displaySegments = 10;
+
+                // ### segments
+                // Count of how many total workout data segments we've split the
+                // data up into.
+                this.segments = 0;
 
                 // ### workoutCount
                 // Count of how many workouts are in the data, set when
                 // efficient to do so.
                 this.workoutCount = 0;
-
-                // ### segments
-                // Count of how many workout data segments we've split the
-                // data up into.
-                this.segments = 0;
                 
                 // ### getLeaderboardData
                 // Get leaderboard data from the API. This function exposes
@@ -93,17 +100,14 @@
                 this.cycleLeaderboard = function () {
                     var segment = 0;
                     var updateData = function () {
-                        var result = leaderboardCtl.getLeaderboardData(segment, 10)
+                        var result = leaderboardCtl.getLeaderboardData(segment,
+                                leaderboardCtl.displaySegments)
                             .then(function (data) {
                                 leaderboardCtl.leaderboardData = data;
 
-                                console.log(segment);
-                                console.log(segment + 1);
-                                console.log(leaderboardCtl.segments);
                                 segment = (segment + 1) % leaderboardCtl.segments;
-                                console.log(segment);
                             });
-                        setTimeout(updateData, 3000);
+                        setTimeout(updateData, leaderboardCtl.cycleInterval);
                     };
                     updateData();
                 };
