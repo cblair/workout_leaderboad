@@ -1,7 +1,7 @@
 # workout_leaderboard
 A minimalist website for getting workout information from a REST API, using the
 Rack gem for Ruby. You can see this app running in the wild at
-(https://murmuring-cliffs-76959.herokuapp.com/)[https://murmuring-cliffs-76959.herokuapp.com/].
+[https://murmuring-cliffs-76959.herokuapp.com/](https://murmuring-cliffs-76959.herokuapp.com/).
 
 # Install and Prerequisites
 Run the following commands to get started running locally:
