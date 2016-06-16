@@ -87,6 +87,21 @@
                         );
                 };
 
+                // ### getSegmentedData
+                // Take a list, and returns a subset based on a segment number
+                // and size.
+                //
+                // #### Params
+                // `data` (Array) - an array to get a subset from.
+                // `segment` (Number) - which nth segement to get. 0 based.
+                // `size` (Number) - the size of the segments.
+                //
+                // #### Returns
+                // (Promise) An ES6 Promise for chaining.
+                //
+                // #### Enhancements
+                // This functions could probably be removed if/when the API
+                // segmentation parameters are known.
                 this.getSegmentedData = function (data, segment, size) {
                     return new Promise(function(fullfill, reject) {
                         var from = segment * size,
@@ -97,6 +112,9 @@
                     });
                 };
 
+                // ### cycleLeaderboard
+                // Continuously get new data for the segment of data we want,
+                // and update our controller data accordingly.
                 this.cycleLeaderboard = function () {
                     var segment = 0;
                     var updateData = function () {
