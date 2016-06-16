@@ -34,7 +34,7 @@ What are you calculating/displaying?
     be important in the rest of the data, so I displayed it in a boolean way.
 * How many results are you going to display at a time? (N) Obviously you won’t be able to view 300 athletes at once on a TV, so what number
 did you cut that down to and why?
-    * I am displaying TODO amount of entries at once because it worked on a
+    * I am displaying 6 amount of entries at once because it worked on a
     48" display. A good enhancement would be to determine the viewable size
     with JS and set the number to display in the controller, but may be
     overkill.

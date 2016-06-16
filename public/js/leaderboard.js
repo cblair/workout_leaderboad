@@ -27,7 +27,7 @@
                 this.leaderboardData = [];
 
                 // How many segments to show at one time.
-                this.displaySegments = 10;
+                this.displaySegments = 6;
 
                 // ### segments
                 // Count of how many total workout data segments we've split the
