@@ -20,40 +20,38 @@
 
                     <!-- Summary -->
                     <td>
-                        <p>Rank:
-                            {{row.rank}}/{{leaderboardCtl.workoutCount}}
+                        <h4>Summary</h4>
+                        <span class="label">
+                            Rank: {{row.rank}}/{{leaderboardCtl.workoutCount}}
                             <i class="fa fa-trophy"></i>
-                        </p>
+                        </span>
 
+                        <!-- Not much data for this, so leaving out for now
                         <p>Tests:
                             <ul>
                                 <li ng-repeat="test in row.tests">{{test}}</li>
                             </ul>
                         </p>
+                        -->
 
-                        <p>User tests:
-                            <ul>
-                                <li ng-repeat="test in row.userTests">
-                                    {{test.value}}
-                                    <ul>
-                                        <li>
-                                            {{test.timestamp | date:'medium'}}
-                                        </li>
-                                        <li>
-                                            RX: <i ng-if="row.rx_bool" class="fa fa-check"></i>
-                                            <i ng-if="!row.rx_bool" class="fa fa-times"></i>
-                                            {{test.rx_bool}}
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-thumbs-o-up"></i> {{test.like_count}}
-                                        </li>
-                                        <li>
-                                        <i class="fa fa-comment-o"></i> {{test.comment_count}}
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </p>
+                        <h4>Workouts</h4>
+                        <ul>
+                            <li ng-repeat="test in row.userTests">
+                                <span class="label">
+                                    Workout intensity {{test.value}} <i class="fa fa-heart"></i> 
+                                </span>
+                                <span class="label success">
+                                    {{test.timestamp | date:'medium'}}
+                                    <i class="fa fa-clock-o"></i>
+                                </span>
+                                <span class="label">
+                                    RX: <i ng-if="test.rx_bool" class="fa fa-check"></i>
+                                        <i ng-if="!test.rx_bool" class="fa fa-times"></i>
+                                </span>
+                                <i class="fa fa-thumbs-o-up"></i> {{test.like_count}}
+                                <i class="fa fa-comment-o"></i> {{test.comment_count}}
+                            </li>
+                        </ul>
                     </td>
                 </tr>
             </tbody>
